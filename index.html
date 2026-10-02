@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Your Name – Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+
+<!--
+  ============================================================
+  HOW TO EDIT THIS PAGE
+  ============================================================
+  1. Search (Ctrl/Cmd + F) for "EDIT:" to find every spot to change.
+  2. Yellow-highlighted text on the page = placeholder to replace.
+  3. Yellow boxes starting with ✎ = reminders. Delete them when done,
+     or press the "Reminders" button (bottom right) to hide them.
+  4. Colors live in the :root block below. Change --accent to restyle.
+  ============================================================
+-->
+
+<style>
+  :root {
+    --bg: #eef1f4;
+    --surface: #ffffff;
+    --ink: #14213d;
+    --muted: #55607a;
+    --line: #cdd5e0;
+    --accent: #2b4eff;        /* EDIT: your accent color */
+    --accent-ink: #ffffff;
+    --note-bg: #ffe580;
+    --note-ink: #3b2f00;
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1624; --surface: #172036; --ink: #e8edf7; --muted: #9aa7c2;
+      --line: #2a3654; --accent: #7d95ff; --accent-ink: #0f1624;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1624; --surface: #172036; --ink: #e8edf7; --muted: #9aa7c2;
+    --line: #2a3654; --accent: #7d95ff; --accent-ink: #0f1624;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 72px); }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: "Newsreader", Georgia, "Times New Roman", serif;
+    font-size: 19px; line-height: 1.6;
+  }
+  h1, h2, h3, .sans, nav, .btn, .tag, .note {
+    font-family: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  }
+  a { color: inherit; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- reminders ---------- */
+  .note {
+    display: block; background: var(--note-bg); color: var(--note-ink);
+    font-size: 14px; line-height: 1.45; padding: 8px 12px; border-radius: 6px;
+    margin: 14px 0; max-width: 62ch;
+  }
+  .note::before { content: "✎  "; font-weight: 800; }
+  .ph { background: var(--note-bg); color: var(--note-ink); padding: 0 4px; border-radius: 3px; }
+  body.hide-notes .note { display: none; }
+  body.hide-notes .ph { background: none; color: inherit; padding: 0; }
+
+  .banner { background: var(--note-bg); color: var(--note-ink); font-family: "Bricolage Grotesque", sans-serif; font-size: 14px; }
+  .banner .wrap { padding-top: 10px; padding-bottom: 10px; }
+  .banner details summary { cursor: pointer; font-weight: 600; }
+  .banner ol { margin: 8px 0 4px; padding-left: 20px; }
+  body.hide-notes .banner { display: none; }
+
+  .toggle-notes {
+    position: fixed; right: calc(16px + env(safe-area-inset-right, 0px));
+    bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 20;
+    background: var(--ink); color: var(--bg); border: 0; border-radius: 999px;
+    padding: 10px 16px; font: 600 14px "Bricolage Grotesque", sans-serif; cursor: pointer;
+  }
+
+  /* ---------- header ---------- */
+  header.top {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line);
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+  header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .logo { font-weight: 800; text-decoration: none; font-size: 18px; }
+  nav { display: flex; gap: 22px; font-size: 15px; font-weight: 600; }
+  nav a { text-decoration: none; color: var(--muted); }
+  nav a:hover { color: var(--ink); }
+  @media (max-width: 560px) { nav { gap: 14px; font-size: 14px; } .logo { display: none; } }
+
+  /* ---------- hero ---------- */
+  .hero { padding: 72px 0 56px; border-bottom: 1px solid var(--line); }
+  .hero h1 {
+    font-size: clamp(54px, 12vw, 148px); line-height: .92; letter-spacing: -0.035em;
+    font-weight: 800; margin: 0 0 28px;
+    font-variation-settings: "opsz" 96;
+  }
+  .hero .role { font-size: clamp(20px, 3vw, 28px); margin: 0 0 8px; max-width: 30ch; }
+  .hero .sub { color: var(--muted); max-width: 52ch; margin: 0 0 28px; }
+  .btns { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-block; padding: 12px 22px; border-radius: 999px; font-weight: 600;
+    font-size: 16px; text-decoration: none; border: 2px solid var(--ink);
+  }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .btn:hover { filter: brightness(1.08); }
+  .status { display: inline-flex; align-items: center; gap: 8px; font: 600 14px "Bricolage Grotesque", sans-serif; margin-bottom: 22px; }
+  .status i { width: 10px; height: 10px; border-radius: 50%; background: #1fa971; display: inline-block; }
+
+  /* ---------- sections ---------- */
+  section { padding: 64px 0; border-bottom: 1px solid var(--line); }
+  .grid { display: grid; grid-template-columns: 200px 1fr; gap: 32px; }
+  @media (max-width: 760px) { .grid { grid-template-columns: 1fr; gap: 16px; } }
+  h2 { font-size: 28px; letter-spacing: -0.01em; margin: 0; line-height: 1.1; }
+  .about p { margin: 0 0 1em; max-width: 62ch; }
+  .facts { list-style: none; padding: 0; margin: 24px 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 18px; }
+  .facts li { border-left: 3px solid var(--accent); padding-left: 12px; }
+  .facts b { display: block; font: 600 13px "Bricolage Grotesque", sans-serif; color: var(--muted); }
+
+  /* projects */
+  .project { display: grid; grid-template-columns: 64px 1fr; gap: 20px; padding: 28px 0; border-top: 1px solid var(--line); }
+  .project:first-of-type { border-top: 0; padding-top: 0; }
+  .project .year { font: 600 15px "Bricolage Grotesque", sans-serif; color: var(--muted); padding-top: 6px; }
+  .project h3 { font-size: 24px; margin: 0 0 6px; letter-spacing: -0.01em; }
+  .project p { margin: 0 0 12px; max-width: 62ch; }
+  .tags { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0 0 12px; }
+  .tag { font-size: 13px; font-weight: 600; padding: 3px 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); }
+  .links { display: flex; gap: 18px; font: 600 15px "Bricolage Grotesque", sans-serif; }
+  .links a { color: var(--accent); text-underline-offset: 3px; }
+  @media (max-width: 560px) { .project { grid-template-columns: 1fr; gap: 4px; } }
+
+  /* skills */
+  .skillgroup { margin-bottom: 28px; }
+  .skillgroup h3 { font-size: 17px; margin: 0 0 4px; }
+  .skillgroup .level { color: var(--muted); font-size: 16px; margin: 0 0 10px; font-style: italic; }
+
+  /* timeline */
+  .timeline { list-style: none; margin: 0; padding: 0 0 0 22px; border-left: 2px solid var(--line); }
+  .timeline li { position: relative; padding-bottom: 28px; }
+  .timeline li::before {
+    content: ""; position: absolute; left: -29px; top: 9px; width: 12px; height: 12px;
+    border-radius: 50%; background: var(--accent); border: 3px solid var(--bg);
+  }
+  .timeline h3 { font-size: 19px; margin: 0; }
+  .timeline .when { font: 600 14px "Bricolage Grotesque", sans-serif; color: var(--muted); }
+  .timeline p { margin: 6px 0 0; max-width: 60ch; }
+
+  /* contact */
+  .contact h2 { font-size: clamp(32px, 6vw, 56px); letter-spacing: -0.02em; }
+  .contact .big { display: inline-block; font: 800 clamp(22px, 4vw, 36px) "Bricolage Grotesque", sans-serif; color: var(--accent); text-underline-offset: 6px; margin: 12px 0 20px; word-break: break-all; }
+  footer { padding: 28px 0 90px; color: var(--muted); font: 400 14px "Bricolage Grotesque", sans-serif; }
+  section:last-of-type { border-bottom: 0; }
+
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<!-- ===================== REMINDER BANNER ===================== -->
+<div class="banner">
+  <div class="wrap">
+    <details>
+      <summary>✎ Draft mode: placeholder content. Open the checklist.</summary>
+      <ol>
+        <li>Replace your name, role and intro in the top section.</li>
+        <li>Rewrite the About text in your own words.</li>
+        <li>Swap in your real projects (title, year, description, tech, links).</li>
+        <li>Update your skills so they match what you can actually do.</li>
+        <li>Add your real experience, education and certificates.</li>
+        <li>Put in your email and social links.</li>
+        <li>Change the page &lt;title&gt; and delete this banner when finished.</li>
+      </ol>
+    </details>
+  </div>
+</div>
+
+<!-- ===================== HEADER ===================== -->
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top"><span class="ph">Denver Bentulan</span></a> <!-- EDIT: short name or initials -->
+    <nav aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Journey</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ===================== HERO ===================== -->
+<div class="hero">
+  <div class="wrap">
+    <p class="status"><i aria-hidden="true"></i> <span class="ph">Open to internships and junior roles</span></p> <!-- EDIT: availability -->
+    <h2><span class="ph">Denver Bentulan</span></h2> <!-- EDIT: full name -->
+    <p class="role"><span class="ph">Web developer</span> who builds clear, fast and useful apps.</p> <!-- EDIT: your role -->
+    <p class="sub"><span class="ph">I turn messy problems into simple tools people actually use, from planning the idea to shipping it online.</span></p> <!-- EDIT: one-line intro -->
+    <span class="note">Reminder: keep the intro to one or two sentences. Say what you build and who it helps.</span>
+    <div class="btns">
+      <a class="btn primary" href="#projects">See my projects</a>
+      <a class="btn" href="#contact">Get in touch</a>
+      <!-- EDIT: link your CV file below, e.g. href="cv.pdf" -->
+      <a class="btn" href="#">Download CV</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== ABOUT ===================== -->
+<section id="about">
+  <div class="wrap grid">
+    <h2>About</h2>
+    <div class="about">
+      <p><span class="ph">I'm a developer who loves turning ideas into working products. I got started by building small tools for friends and classmates, and I haven't stopped since.</span></p>
+      <p><span class="ph">I care about clean code, readable interfaces and learning something new on every project. When I'm not coding, I enjoy [hobby], [hobby] and [hobby].</span></p>
+      <span class="note">Reminder: write this in your own voice. Mention how you started, what you enjoy building, and one personal detail.</span>
+      <ul class="facts">
+        <li><b>Based in</b> <span class="ph">City, Country</span></li> <!-- EDIT -->
+        <li><b>Focus</b> <span class="ph">Front-end and full-stack</span></li> <!-- EDIT -->
+        <li><b>Languages</b> <span class="ph">English, Filipino</span></li> <!-- EDIT -->
+        <li><b>Currently learning</b> <span class="ph">TypeScript and testing</span></li> <!-- EDIT -->
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROJECTS ===================== -->
+<section id="projects">
+  <div class="wrap grid">
+    <h2>Projects</h2>
+    <div>
+      <span class="note">Reminder: pick 3 to 6 projects you're proudest of. For each one, say the problem, what you built, and the result. Add a live link and a code link whenever you can.</span>
+
+      <!-- EDIT: duplicate this whole <article> block for each project -->
+      <article class="project">
+        <div class="year"><span class="ph">2025</span></div>
+        <div>
+          <h3><span class="ph">TaskTide</span></h3>
+          <p><span class="ph">A team task planner with drag-and-drop boards, due-date reminders and a weekly progress view. Built so small teams can plan sprints without a heavy tool.</span></p>
+          <ul class="tags"><li class="tag">React</li><li class="tag">Node.js</li><li class="tag">PostgreSQL</li><li class="tag">Tailwind</li></ul> <!-- EDIT: tech used -->
+          <div class="links"><a href="#">Live demo</a><a href="#">Source code</a></div> <!-- EDIT: real URLs -->
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="year"><span class="ph">2025</span></div>
+        <div>
+          <h3><span class="ph">Pocket Ledger</span></h3>
+          <p><span class="ph">A mobile-friendly expense tracker that sorts spending into categories and shows monthly charts. Works offline as an installable web app.</span></p>
+          <ul class="tags"><li class="tag">TypeScript</li><li class="tag">PWA</li><li class="tag">Chart.js</li><li class="tag">IndexedDB</li></ul>
+          <div class="links"><a href="#">Live demo</a><a href="#">Source code</a></div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="year"><span class="ph">2024</span></div>
+        <div>
+          <h3><span class="ph">ShelfSense</span></h3>
+          <p><span class="ph">An inventory app for small shops that tracks stock, flags low items and prints simple sales reports. Designed with a shop owner I interviewed.</span></p>
+          <ul class="tags"><li class="tag">Next.js</li><li class="tag">Prisma</li><li class="tag">SQLite</li><li class="tag">Auth</li></ul>
+          <div class="links"><a href="#">Live demo</a><a href="#">Source code</a></div>
+        </div>
+      </article>
+
+      <article class="project">
+        <div class="year"><span class="ph">2024</span></div>
+        <div>
+          <h3><span class="ph">Lumen Weather</span></h3>
+          <p><span class="ph">A clean weather dashboard with hourly forecasts, saved cities and light and dark themes. My first project that talks to a public API.</span></p>
+          <ul class="tags"><li class="tag">JavaScript</li><li class="tag">REST API</li><li class="tag">CSS Grid</li></ul>
+          <div class="links"><a href="#">Live demo</a><a href="#">Source code</a></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SKILLS ===================== -->
+<section id="skills">
+  <div class="wrap grid">
+    <h2>Skills</h2>
+    <div>
+      <span class="note">Reminder: only list what you could comfortably talk about in an interview. Move items between the levels to match reality.</span>
+
+      <div class="skillgroup">
+        <h3>Use every day</h3>
+        <p class="level">What I reach for first</p>
+        <ul class="tags"> <!-- EDIT: your strongest skills -->
+          <li class="tag">HTML</li><li class="tag">CSS</li><li class="tag">JavaScript</li><li class="tag">React</li><li class="tag">Git and GitHub</li>
+        </ul>
+      </div>
+
+      <div class="skillgroup">
+        <h3>Comfortable with</h3>
+        <p class="level">Used on real projects</p>
+        <ul class="tags"> <!-- EDIT -->
+          <li class="tag">Node.js</li><li class="tag">Express</li><li class="tag">SQL</li><li class="tag">PostgreSQL</li><li class="tag">Tailwind CSS</li><li class="tag">REST APIs</li><li class="tag">Figma</li><li class="tag">Python</li>
+        </ul>
+      </div>
+
+      <div class="skillgroup">
+        <h3>Learning now</h3>
+        <p class="level">Practising in side projects</p>
+        <ul class="tags"> <!-- EDIT -->
+          <li class="tag">TypeScript</li><li class="tag">Next.js</li><li class="tag">Docker</li><li class="tag">Testing (Jest)</li>
+        </ul>
+      </div>
+
+      <div class="skillgroup">
+        <h3>Working style</h3>
+        <p class="level">How I like to work</p>
+        <ul class="tags"> <!-- EDIT: soft skills -->
+          <li class="tag">Clear communication</li><li class="tag">Team collaboration</li><li class="tag">Problem solving</li><li class="tag">Time management</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EXPERIENCE ===================== -->
+<section id="experience">
+  <div class="wrap grid">
+    <h2>Journey</h2>
+    <div>
+      <span class="note">Reminder: newest first. Include internships, freelance work, school, certificates and awards. Keep each entry to two sentences.</span>
+      <ol class="timeline">
+        <li>
+          <span class="when"><span class="ph">2025 – Present</span></span>
+          <h3><span class="ph">Freelance Web Developer</span></h3> <!-- EDIT -->
+          <p><span class="ph">Built websites and small web apps for local clients, handling design, development and deployment.</span></p>
+        </li>
+        <li>
+          <span class="when"><span class="ph">Summer 2024</span></span>
+          <h3><span class="ph">Web Development Intern, Company Name</span></h3>
+          <p><span class="ph">Helped build and test features for an internal dashboard. Fixed bugs and wrote documentation for the team.</span></p>
+        </li>
+        <li>
+          <span class="when"><span class="ph">2021 – 2025</span></span>
+          <h3><span class="ph">BS in Information Technology, University Name</span></h3>
+          <p><span class="ph">Focused on web development and databases. Final-year project: [project name].</span></p>
+        </li>
+        <li>
+          <span class="when"><span class="ph">2024</span></span>
+          <h3><span class="ph">Certificate: Responsive Web Design</span></h3>
+          <p><span class="ph">Issuer name and credential link.</span></p>
+        </li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <h2>Let's build something.</h2>
+    <p>I'm happy to chat about roles, freelance work or collaborations.</p>
+    <!-- EDIT: replace with your real email in BOTH places -->
+    <a class="big" href="mailto:you@example.com"><span class="ph">you@example.com</span></a>
+    <span class="note">Reminder: use an email you check often. Add only the social links you actively use.</span>
+    <div class="btns">
+      <!-- EDIT: real profile URLs -->
+      <a class="btn" href="#">GitHub</a>
+      <a class="btn" href="#">LinkedIn</a>
+      <a class="btn" href="#">Twitter / X</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">© <span id="yr"></span> <span class="ph">Your Name</span>. Built by hand with HTML and CSS.</div> <!-- EDIT -->
+</footer>
+
+<button class="toggle-notes" id="toggle" type="button" aria-pressed="true">Reminders: on</button>
+
+<script>
+  document.getElementById("yr").textContent = new Date().getFullYear();
+  var btn = document.getElementById("toggle");
+  btn.addEventListener("click", function () {
+    var hidden = document.body.classList.toggle("hide-notes");
+    btn.textContent = hidden ? "Reminders: off" : "Reminders: on";
+    btn.setAttribute("aria-pressed", String(!hidden));
+  });
+</script>
+</body>
+</html>
