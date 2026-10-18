@@ -593,6 +593,252 @@
       justify-content:space-between;
       border-top:1px solid var(--border);
     }
+    /* SOCIAL LINKS */
+    .socials{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:12px;
+    }
+    .social{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      padding:14px 16px;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      transition:0.3s;
+    }
+    .social-icon{
+      width:42px;
+      height:42px;
+      flex-shrink:0;
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border:1px solid var(--border);
+      color:var(--brand);
+      transition:0.3s;
+    }
+    .social-icon svg{
+      width:20px;
+      height:20px;
+    }
+    .social-text b{
+      display:block;
+      font-size:14px;
+      line-height:1.3;
+    }
+    .social-text small{
+      display:block;
+      font-family:'JetBrains Mono',monospace;
+      font-size:11px;
+      color:var(--muted);
+    }
+    .social:hover{
+      transform:translateY(-4px);
+      border-color:var(--brand);
+      box-shadow:0 12px 28px rgba(0,0,0,0.25);
+    }
+    .social:hover .social-icon{
+      background:var(--brand);
+      border-color:var(--brand);
+      color:var(--icon-hover,#fff);
+    }
+
+    /* CHATBOT */
+    .chat-toggle{
+      position:fixed;
+      right:24px;
+      bottom:24px;
+      width:58px;
+      height:58px;
+      border-radius:50%;
+      border:none;
+      background:var(--accent);
+      color:#0a0a0b;
+      cursor:pointer;
+      z-index:50;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow:0 10px 30px rgba(0,0,0,0.35);
+      transition:0.3s;
+    }
+    .chat-toggle:hover{
+      transform:scale(1.08);
+    }
+    .chat-toggle svg{
+      width:26px;
+      height:26px;
+    }
+    .chat-box{
+      position:fixed;
+      right:24px;
+      bottom:96px;
+      width:360px;
+      max-width:calc(100vw - 32px);
+      height:520px;
+      max-height:calc(100vh - 130px);
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:20px;
+      box-shadow:0 20px 60px rgba(0,0,0,0.45);
+      z-index:50;
+      display:none;
+      flex-direction:column;
+      overflow:hidden;
+    }
+    .chat-box.open{
+      display:flex;
+      animation:fadeUp 0.35s ease;
+    }
+    .chat-head{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:14px 16px;
+      border-bottom:1px solid var(--border);
+    }
+    .chat-avatar{
+      width:36px;
+      height:36px;
+      border-radius:50%;
+      background:var(--accent);
+      color:#0a0a0b;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight:800;
+      font-size:14px;
+    }
+    .chat-head b{
+      display:block;
+      font-size:14px;
+      line-height:1.2;
+    }
+    .chat-head small{
+      font-family:'JetBrains Mono',monospace;
+      font-size:10px;
+      color:var(--muted);
+    }
+    .chat-close{
+      margin-left:auto;
+      background:none;
+      border:none;
+      color:var(--muted);
+      font-size:18px;
+      cursor:pointer;
+    }
+    .chat-close:hover{
+      color:var(--text);
+    }
+    .chat-messages{
+      flex:1;
+      overflow-y:auto;
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    .msg{
+      max-width:85%;
+      padding:10px 14px;
+      border-radius:16px;
+      font-size:13px;
+      line-height:1.5;
+      word-wrap:break-word;
+    }
+    .msg.bot{
+      align-self:flex-start;
+      background:var(--bg);
+      border:1px solid var(--border);
+      border-bottom-left-radius:4px;
+    }
+    .msg.user{
+      align-self:flex-end;
+      background:var(--accent);
+      color:#0a0a0b;
+      border-bottom-right-radius:4px;
+    }
+    .msg a{
+      color:var(--accent);
+      text-decoration:underline;
+    }
+    .msg.user a{
+      color:#0a0a0b;
+    }
+    .typing-dots span{
+      display:inline-block;
+      width:6px;
+      height:6px;
+      margin-right:3px;
+      border-radius:50%;
+      background:var(--muted);
+      animation:pulse 1s infinite;
+    }
+    .typing-dots span:nth-child(2){
+      animation-delay:0.2s;
+    }
+    .typing-dots span:nth-child(3){
+      animation-delay:0.4s;
+    }
+    .chat-chips{
+      display:flex;
+      gap:6px;
+      flex-wrap:wrap;
+      padding:0 16px 10px;
+    }
+    .chip{
+      font-family:'JetBrains Mono',monospace;
+      font-size:11px;
+      padding:5px 10px;
+      border-radius:100px;
+      border:1px solid var(--border);
+      background:transparent;
+      color:var(--muted);
+      cursor:pointer;
+      transition:0.3s;
+    }
+    .chip:hover{
+      border-color:var(--accent);
+      color:var(--accent);
+    }
+    .chat-form{
+      display:flex;
+      gap:8px;
+      padding:12px;
+      border-top:1px solid var(--border);
+    }
+    .chat-form input{
+      flex:1;
+      min-width:0;
+      background:var(--bg);
+      border:1px solid var(--border);
+      border-radius:100px;
+      padding:10px 16px;
+      color:var(--text);
+      font-family:inherit;
+      font-size:13px;
+      outline:none;
+    }
+    .chat-form input:focus{
+      border-color:var(--accent);
+    }
+    .chat-form button{
+      width:40px;
+      height:40px;
+      flex-shrink:0;
+      border:none;
+      border-radius:50%;
+      background:var(--accent);
+      color:#0a0a0b;
+      cursor:pointer;
+      font-size:16px;
+      font-weight:800;
+    }
+
     @media(max-width:800px){
       .hero{
         grid-template-columns:1fr;
@@ -611,6 +857,16 @@
       .profile-circle-wrapper{
         width:260px;
         height:260px;
+      }
+    }
+    @media(max-width:480px){
+      .chat-toggle{
+        right:16px;
+        bottom:16px;
+      }
+      .chat-box{
+        right:16px;
+        bottom:84px;
       }
     }
   </style>
@@ -802,24 +1058,60 @@
         <h2>Let's build something</h2>
         <p>RESPONSE IN &lt; 24H</p>
       </div>
-      <div style="display:flex; gap:12px; flex-wrap:wrap">
-        <a class="btn btn-ghost" href="https://mail.google.com/mail/?view=cm&to=denverbentulan87@gmail.com" target="_blank" rel="noopener">
-          Gmail
+      <div class="socials">
+        <a class="social" href="https://mail.google.com/mail/?view=cm&to=denverbentulan87@gmail.com" target="_blank" rel="noopener" style="--brand:#EA4335;">
+          <span class="social-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M3.5 7.5L12 13.5l8.5-6"/></svg>
+          </span>
+          <span class="social-text">
+            <b>Gmail</b>
+            <small>Send an email</small>
+          </span>
         </a>
-        <a class="btn btn-ghost" href="https://www.linkedin.com/in/denver-bentulan-016713303" target="_blank" rel="noopener">
-          LinkedIn
+        <a class="social" href="https://www.linkedin.com/in/denver-bentulan-016713303" target="_blank" rel="noopener" style="--brand:#0A66C2;">
+          <span class="social-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </span>
+          <span class="social-text">
+            <b>LinkedIn</b>
+            <small>Let's connect</small>
+          </span>
         </a>
-        <a class="btn btn-ghost" href="https://github.com/denverbentulan87-sketch" target="_blank" rel="noopener">
-          GitHub
+        <a class="social" href="https://github.com/denverbentulan87-sketch" target="_blank" rel="noopener" style="--brand:var(--text);--icon-hover:var(--bg);">
+          <span class="social-icon">
+            <svg viewBox="0 0 16 16" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+          </span>
+          <span class="social-text">
+            <b>GitHub</b>
+            <small>View my code</small>
+          </span>
         </a>
-        <a class="btn btn-ghost" href="https://www.facebook.com/bentulan.denver" target="_blank" rel="noopener">
-          Facebook
+        <a class="social" href="https://www.facebook.com/bentulan.denver" target="_blank" rel="noopener" style="--brand:#1877F2;">
+          <span class="social-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
+          </span>
+          <span class="social-text">
+            <b>Facebook</b>
+            <small>Follow me</small>
+          </span>
         </a>
-        <a class="btn btn-ghost" href="https://m.me/bentulan.denver" target="_blank" rel="noopener">
-          Message Me
+        <a class="social" href="https://m.me/bentulan.denver" target="_blank" rel="noopener" style="--brand:#0099FF;">
+          <span class="social-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.48 2 2 6.14 2 11.25c0 2.9 1.45 5.48 3.72 7.17V22l3.4-1.87c.9.25 1.86.39 2.88.39 5.52 0 10-4.14 10-9.27S17.52 2 12 2zM5.8 14l4.4-4.7 2.4 2.4 3.9-2.4-4.3 4.7-2.4-2.4L5.8 14z"/></svg>
+          </span>
+          <span class="social-text">
+            <b>Messenger</b>
+            <small>Chat with me</small>
+          </span>
         </a>
-        <a class="btn btn-ghost" href="assets/cv/Denver-Bentulan-CV.pdf" target="_blank" rel="noopener">
-          View CV
+        <a class="social" href="assets/cv/Denver-Bentulan-CV.pdf" target="_blank" rel="noopener" style="--brand:var(--accent);--icon-hover:#0a0a0b;">
+          <span class="social-icon">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 00-2 2v14a2 2 0 002 2h10a2 2 0 002-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6"/></svg>
+          </span>
+          <span class="social-text">
+            <b>View CV</b>
+            <small>Open my resume</small>
+          </span>
         </a>
       </div>
     </section>
@@ -828,6 +1120,33 @@
       <span>© 2026 Denver Bentulan</span>
       <span>INABANGA, PH</span>
     </footer>
+  </div>
+
+  <!-- CHATBOT -->
+  <button class="chat-toggle" id="chatToggle" aria-label="Chat with Denver's assistant">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 01-11.6 7.1L3 21l1.9-5.4A8 8 0 1121 12z"/></svg>
+  </button>
+  <div class="chat-box" id="chatBox">
+    <div class="chat-head">
+      <div class="chat-avatar">D</div>
+      <div>
+        <b>Denver's Assistant</b>
+        <small>● Ask me about Denver</small>
+      </div>
+      <button class="chat-close" id="chatClose" aria-label="Close chat">✕</button>
+    </div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-chips" id="chatChips">
+      <button class="chip" data-q="Who is Denver?">Who is Denver?</button>
+      <button class="chip" data-q="What are his skills?">Skills</button>
+      <button class="chip" data-q="Show me his projects">Projects</button>
+      <button class="chip" data-q="Is he available for hire?">Availability</button>
+      <button class="chip" data-q="How can I contact him?">Contact</button>
+    </div>
+    <form class="chat-form" id="chatForm">
+      <input type="text" id="chatInput" placeholder="Ask about Denver..." autocomplete="off">
+      <button type="submit" aria-label="Send">➤</button>
+    </form>
   </div>
 
   <div class="lightbox" id="lightbox" onclick="closeLightbox()">
@@ -922,6 +1241,208 @@
           el.style.textShadow='';
         }, 300);
       });
+    });
+    // ===== CHATBOT =====
+    // The bot reads your page (projects, skills, about, stats, social links),
+    // so anything you add or edit in the HTML is answered automatically.
+    // Only facts that are NOT shown on the page live here:
+    const FACTS = {
+      name:'Denver Bentulan',
+      phone:'09094947088',
+      phoneNice:'0909 494 7088',
+      education:'BS in Information Systems at Inabanga College of Arts and Sciences (expected 2027 – 2028)'
+    };
+
+    const STOP = new Set(['what','whats','who','how','does','did','you','your','his','him','her','are','the','and','for','with','that','this','can','tell','about','denver','bentulan','show','any','other','more','also','from','has','have','get','their','there','where','when','which','why','please','want','know','would','could','should','web','app','apps','website','websites','site','concept','project','projects','some','all','his','use','used','uses','using','list','give','need','make']);
+    const txt = el => el ? el.textContent.replace(/\s+/g,' ').trim() : '';
+    const esc = v => String(v).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+    const lnk = (href,label) => '<a href="'+esc(href)+'" target="_blank" rel="noopener">'+esc(label)+'</a>';
+    const tokens = t => t.toLowerCase().replace(/[^a-z0-9+#.\s]/g,' ').split(/\s+/).filter(w => w.length > 2 && !STOP.has(w));
+
+    function getProjects(){
+      return [...document.querySelectorAll('.project')].map(p=>{
+        const links = [...p.querySelectorAll('.project-links a')];
+        const find = word => links.find(a => txt(a).toLowerCase().includes(word));
+        return {
+          title: txt(p.querySelector('h3')),
+          desc: txt(p.querySelector('.project-body p')),
+          tags: [...p.querySelectorAll('.tag')].map(txt),
+          live: find('live') ? find('live').href : '',
+          source: find('source') ? find('source').href : ''
+        };
+      });
+    }
+    function projectCard(p){
+      let h = '<b>'+esc(p.title)+'</b><br>'+esc(p.desc);
+      if(p.tags.length) h += '<br>Tech: '+esc(p.tags.join(', '));
+      const l = [];
+      if(p.live) l.push(lnk(p.live,'Live site'));
+      if(p.source) l.push(lnk(p.source,'Source code'));
+      if(l.length) h += '<br>'+l.join(' · ');
+      return h;
+    }
+    function getSkills(){
+      return [...document.querySelectorAll('.skill-list li')].map(li=>{
+        const sp = li.querySelectorAll('span');
+        return { label: txt(sp[0]), items: txt(sp[1]).split('/').map(x=>x.trim()).filter(Boolean) };
+      });
+    }
+    function aboutParts(){
+      const p = document.querySelector('.about p');
+      if(!p) return [];
+      return p.innerHTML.split(/<br\s*\/?>/i).map(x => x.replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim()).filter(Boolean);
+    }
+    function getStats(){
+      return [...document.querySelectorAll('.stat')].map(s => txt(s.querySelector('b'))+' '+txt(s.querySelector('span')).toLowerCase());
+    }
+    function contactList(){
+      const rows = [...document.querySelectorAll('.social')].map(a => '• '+lnk(a.href, txt(a.querySelector('b'))));
+      rows.push('• Phone: <a href="tel:+63'+FACTS.phone.slice(1)+'">'+FACTS.phoneNice+'</a>');
+      return rows.join('<br>');
+    }
+
+    const BOT = [
+      { re:[/\b(hi|hello|hey|yo|sup|good (morning|afternoon|evening))\b/],
+        a:() => "Hi there! 👋 I'm Denver's assistant. Ask me about his skills, projects, experience, education, availability, or how to contact him." },
+      { re:[/phone|number|\bcall\b|text me|mobile|cell|whatsapp|viber/],
+        a:() => "You can call or text Denver at <a href=\"tel:+63"+FACTS.phone.slice(1)+"\">"+FACTS.phoneNice+"</a>." },
+      { re:[/project/,/\bwork\b|portfolio|built|made|created/],
+        a:(t,toks) => {
+          const ps = getProjects();
+          const match = ps.filter(p => toks.some(w => (p.desc+' '+p.tags.join(' ')).toLowerCase().includes(w)));
+          if(match.length && match.length < ps.length) return match.map(projectCard).join('<br><br>');
+          return "Denver's selected projects:<br>" + ps.map(p => '• <b>'+esc(p.title)+'</b> ('+esc(p.tags.join(', '))+')').join('<br>') + "<br>Ask me about any of them for details and links.";
+        } },
+      { re:[/skill/,/tech|stack|language|tool/,/frontend|backend|design|react|php|html|css|javascript|typescript|firebase|figma|webflow|draw|git|vercel|laravel|mysql|sql|know|use/],
+        a:(t,toks) => {
+          const sk = getSkills();
+          const hits = [];
+          sk.forEach(r => r.items.forEach(it => { if(toks.some(w => it.toLowerCase().includes(w))) hits.push(it+' ('+r.label+')'); }));
+          const list = sk.map(r => '• <b>'+esc(r.label)+':</b> '+esc(r.items.join(', '))).join('<br>');
+          let extra = '';
+          if(!hits.length){
+            const used = getProjects().filter(p => p.tags.some(tag => toks.some(w => tag.toLowerCase().includes(w))));
+            if(used.length) extra = 'Denver has used that in: '+esc(used.map(p => p.title).join(', '))+'.<br><br>';
+          }
+          return (hits.length ? 'Yes! Denver works with '+esc(hits.join(', '))+'.<br><br>' : '') + extra + "Denver's skills:<br>" + list;
+        } },
+      { re:[/experience|years?|how long|freelanc/,/\bjob\b|career|background|started/],
+        a:() => { const p = aboutParts(); return (getStats().length ? esc(getStats().join(' · '))+'.<br>' : '') + esc(p[0] || ''); } },
+      { re:[/educat|school|college|universit|degree|graduat|study|studied|course|\bbs\b|information system/],
+        a:() => "Denver is taking a <b>"+esc(FACTS.education)+"</b>." },
+      { re:[/hire|hiring|available|availability|open to|remote|full.?time|work with|need a|rate|price|cost|quote/],
+        a:() => {
+          const p = aboutParts(); const resp = txt(document.querySelector('#contact .section-head p'));
+          return "Yes! Denver is <b>available for new projects</b>. " + esc(p[p.length-1] || '') + (resp ? " ("+esc(resp.toLowerCase())+")" : '') + "<br><br>Reach him here:<br>" + contactList();
+        } },
+      { re:[/contact|reach|email|mail|message|chat|talk|social|linkedin|github|facebook|messenger|get in touch/],
+        a:() => "You can reach Denver here:<br>" + contactList() },
+      { re:[/\bcv\b|resume|résumé|curriculum/],
+        a:() => { const cv = [...document.querySelectorAll('.social')].find(a => /cv/i.test(txt(a))); return "You can open Denver's resume here: " + (cv ? lnk(cv.href,'View CV') : 'see the "View CV" button in the contact section') + "."; } },
+      { re:[/where|location|based|\blive\b|country|city|cebu|inabanga|philippines|timezone/],
+        a:() => "Denver is based in " + esc(txt(document.querySelector('.profile-role')).replace(/^.*\/\s*/,'') || 'Inabanga, PH') + " (Cebu, Philippines) and works with clients worldwide." },
+      { re:[/service|offer|do you do|what (can|does) he|specializ|focus|e-?commerce|shopify/],
+        a:() => esc(txt(document.querySelector('.hero p'))) },
+      { re:[/who|about|yourself|introduce|tell me/],
+        a:() => { const p = aboutParts(); return "<b>"+esc(FACTS.name)+"</b> — "+esc(txt(document.querySelector('.profile-role')))+".<br>" + esc(p.join(' ')); } },
+      { re:[/thank|thanks|thx|appreciate/],
+        a:() => "You're welcome! 😊 Let me know if you'd like to know anything else about Denver." },
+      { re:[/\b(bye|goodbye|see you|later)\b/],
+        a:() => "Thanks for stopping by! Feel free to reach out to Denver anytime. 👋" }
+    ];
+
+    const FALLBACK = "I can only answer questions about Denver. Try asking about his <b>skills</b>, <b>projects</b>, <b>experience</b>, <b>education</b>, <b>availability</b>, or <b>contact</b> details.";
+
+    function getReply(text){
+      const t = text.toLowerCase();
+      const toks = tokens(text);
+      const projects = getProjects();
+
+      // 1) A specific project named in the question (matches the project title)
+      const titleScores = projects.map(p => toks.filter(w => p.title.toLowerCase().includes(w)).length);
+      const topTitle = Math.max(0, ...titleScores);
+      if(topTitle > 0){
+        return projects.filter((p,i) => titleScores[i] === topTitle).map(projectCard).join('<br><br>');
+      }
+
+      // 2) Topic questions (skills, contact, education, ...)
+      let best = null, bestScore = 0;
+      BOT.forEach(item => {
+        let score = 0;
+        item.re.forEach(r => { if(r.test(t)) score++; });
+        if(score > bestScore){ best = item; bestScore = score; }
+      });
+      if(best) return best.a(t, toks);
+
+      // 3) Projects whose description or tech tags match the question
+      const projHits = projects.filter(p => toks.some(w => (p.desc+' '+p.tags.join(' ')).toLowerCase().includes(w)));
+      if(projHits.length) return projHits.map(projectCard).join('<br><br>');
+
+      // 4) Search everything else written on the page (new sections, new text)
+      const chunks = [...document.querySelectorAll('.hero p, .stat, .profile-role, section p, section li, .project')];
+      let hit = null, hitScore = 0;
+      chunks.forEach(el => {
+        const c = txt(el).toLowerCase();
+        const sc = toks.filter(w => c.includes(w)).length;
+        if(sc > hitScore){ hit = el; hitScore = sc; }
+      });
+      if(hit && hitScore >= 1){
+        const out = txt(hit);
+        return esc(out.length > 320 ? out.slice(0,320)+'…' : out);
+      }
+      return FALLBACK;
+    }
+
+    const chatBox = document.getElementById('chatBox');
+    const chatMessages = document.getElementById('chatMessages');
+    const chatInput = document.getElementById('chatInput');
+    let chatStarted = false;
+
+    function addMsg(content, who, isHTML){
+      const div = document.createElement('div');
+      div.className = 'msg ' + who;
+      if(isHTML) div.innerHTML = content; else div.textContent = content;
+      chatMessages.appendChild(div);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      return div;
+    }
+
+    function botReply(text){
+      const typing = addMsg('<span class="typing-dots"><span></span><span></span><span></span></span>', 'bot', true);
+      setTimeout(()=>{
+        typing.remove();
+        addMsg(getReply(text), 'bot', true);
+      }, 600);
+    }
+
+    function sendMessage(text){
+      text = text.trim();
+      if(!text) return;
+      addMsg(text, 'user', false);
+      botReply(text);
+    }
+
+    function toggleChat(open){
+      const show = open === undefined ? !chatBox.classList.contains('open') : open;
+      chatBox.classList.toggle('open', show);
+      if(show){
+        if(!chatStarted){
+          chatStarted = true;
+          addMsg("Hi! 👋 I'm Denver's assistant. Ask me anything about his skills, projects, experience, or how to contact him.", 'bot', false);
+        }
+        chatInput.focus();
+      }
+    }
+
+    document.getElementById('chatToggle').addEventListener('click', ()=>toggleChat());
+    document.getElementById('chatClose').addEventListener('click', ()=>toggleChat(false));
+    document.getElementById('chatForm').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      sendMessage(chatInput.value);
+      chatInput.value = '';
+    });
+    document.querySelectorAll('.chip').forEach(c=>{
+      c.addEventListener('click', ()=>sendMessage(c.dataset.q));
     });
   </script>
 </body>
