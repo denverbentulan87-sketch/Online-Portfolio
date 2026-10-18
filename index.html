@@ -648,91 +648,228 @@
     }
 
     /* CHATBOT */
+    @keyframes blink{
+      0%,92%,100%{
+        transform:scaleY(1);
+      }
+      96%{
+        transform:scaleY(0.1);
+      }
+    }
+    @keyframes ring{
+      0%{
+        box-shadow:0 0 0 0 rgba(198,255,94,0.5);
+      }
+      100%{
+        box-shadow:0 0 0 18px rgba(198,255,94,0);
+      }
+    }
+    @keyframes pop{
+      from{
+        opacity:0;
+        transform:translateY(10px) scale(0.96);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+      }
+    }
+    .bot-svg{
+      width:100%;
+      height:100%;
+      color:#0a0a0b;
+    }
+    .bot-eyes{
+      transition:transform 0.15s ease-out;
+    }
+    .bot-eye{
+      transform-box:fill-box;
+      transform-origin:center;
+      animation:blink 4.5s infinite;
+    }
+    .bot-ant{
+      animation:pulse 1.4s infinite;
+    }
+    .bot-ava{
+      position:relative;
+      flex-shrink:0;
+      border-radius:50%;
+      background:var(--accent);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .bot-ava.sm{
+      width:30px;
+      height:30px;
+      padding:4px;
+    }
+    .bot-ava.big{
+      width:44px;
+      height:44px;
+      padding:6px;
+    }
+    .bot-ava.xl{
+      width:68px;
+      height:68px;
+      padding:10px;
+      margin:0 auto 10px;
+      animation:float 4s ease-in-out infinite;
+    }
     .chat-toggle{
       position:fixed;
       right:24px;
       bottom:24px;
-      width:58px;
-      height:58px;
+      width:62px;
+      height:62px;
+      padding:9px;
       border-radius:50%;
       border:none;
       background:var(--accent);
-      color:#0a0a0b;
       cursor:pointer;
       z-index:50;
+      box-shadow:0 10px 30px rgba(0,0,0,0.35);
+      transition:0.3s;
+      animation:ring 2.4s infinite;
+    }
+    .chat-toggle:hover{
+      transform:scale(1.1) rotate(-4deg);
+    }
+    .chat-badge{
+      position:absolute;
+      top:-4px;
+      right:-4px;
+      width:20px;
+      height:20px;
+      border-radius:50%;
+      background:#ff4d4f;
+      color:#fff;
+      font-size:11px;
+      font-weight:800;
       display:flex;
       align-items:center;
       justify-content:center;
-      box-shadow:0 10px 30px rgba(0,0,0,0.35);
-      transition:0.3s;
+      border:2px solid var(--bg);
     }
-    .chat-toggle:hover{
-      transform:scale(1.08);
+    .bot-teaser{
+      position:fixed;
+      right:24px;
+      bottom:100px;
+      max-width:250px;
+      padding:12px 34px 12px 14px;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:16px;
+      border-bottom-right-radius:4px;
+      font-size:13px;
+      line-height:1.5;
+      z-index:49;
+      box-shadow:0 14px 40px rgba(0,0,0,0.35);
+      cursor:pointer;
+      display:none;
     }
-    .chat-toggle svg{
-      width:26px;
-      height:26px;
+    .bot-teaser.show{
+      display:block;
+      animation:pop 0.4s ease;
+    }
+    .bot-teaser button{
+      position:absolute;
+      top:6px;
+      right:8px;
+      background:none;
+      border:none;
+      color:var(--muted);
+      cursor:pointer;
+      font-size:13px;
     }
     .chat-box{
       position:fixed;
       right:24px;
-      bottom:96px;
-      width:360px;
+      bottom:100px;
+      width:380px;
       max-width:calc(100vw - 32px);
-      height:520px;
-      max-height:calc(100vh - 130px);
+      height:560px;
+      max-height:calc(100vh - 124px);
       background:var(--card);
       border:1px solid var(--border);
-      border-radius:20px;
-      box-shadow:0 20px 60px rgba(0,0,0,0.45);
+      border-radius:22px;
+      box-shadow:0 24px 70px rgba(0,0,0,0.5);
       z-index:50;
       display:none;
       flex-direction:column;
       overflow:hidden;
+      transition:width 0.3s,height 0.3s;
+    }
+    .chat-box.expanded{
+      width:520px;
+      height:700px;
     }
     .chat-box.open{
       display:flex;
-      animation:fadeUp 0.35s ease;
+      animation:pop 0.35s ease;
     }
     .chat-head{
       display:flex;
       align-items:center;
-      gap:10px;
+      gap:12px;
       padding:14px 16px;
+      background:linear-gradient(135deg,rgba(198,255,94,0.14),transparent 70%);
       border-bottom:1px solid var(--border);
     }
-    .chat-avatar{
-      width:36px;
-      height:36px;
+    .status-dot{
+      position:absolute;
+      right:0;
+      bottom:0;
+      width:11px;
+      height:11px;
       border-radius:50%;
-      background:var(--accent);
-      color:#0a0a0b;
+      background:#3ddc84;
+      border:2px solid var(--card);
+    }
+    .chat-id{
+      min-width:0;
+    }
+    .chat-id b{
       display:flex;
       align-items:center;
-      justify-content:center;
-      font-weight:800;
-      font-size:14px;
-    }
-    .chat-head b{
-      display:block;
+      gap:6px;
       font-size:14px;
       line-height:1.2;
     }
-    .chat-head small{
+    .bot-tag{
+      font-style:normal;
+      font-family:'JetBrains Mono',monospace;
+      font-size:9px;
+      padding:2px 6px;
+      border-radius:6px;
+      background:var(--accent);
+      color:#0a0a0b;
+    }
+    .chat-id small{
       font-family:'JetBrains Mono',monospace;
       font-size:10px;
       color:var(--muted);
     }
-    .chat-close{
+    .chat-btns{
       margin-left:auto;
-      background:none;
-      border:none;
-      color:var(--muted);
-      font-size:18px;
-      cursor:pointer;
+      display:flex;
+      gap:4px;
     }
-    .chat-close:hover{
-      color:var(--text);
+    .chat-btns button{
+      width:30px;
+      height:30px;
+      border:none;
+      border-radius:8px;
+      background:transparent;
+      color:var(--muted);
+      font-size:15px;
+      cursor:pointer;
+      transition:0.25s;
+    }
+    .chat-btns button:hover{
+      background:var(--bg);
+      color:var(--accent);
+      transform:scale(1.1);
     }
     .chat-messages{
       flex:1;
@@ -740,24 +877,51 @@
       padding:16px;
       display:flex;
       flex-direction:column;
-      gap:10px;
+      gap:14px;
+      scroll-behavior:smooth;
+    }
+    .bot-profile-card{
+      text-align:center;
+      padding:18px 16px;
+      background:var(--bg);
+      border:1px solid var(--border);
+      border-radius:18px;
+    }
+    .bot-profile-card b{
+      display:block;
+      font-size:15px;
+    }
+    .bot-profile-card small{
+      display:block;
+      font-size:12px;
+      color:var(--muted);
+      margin:2px 0 12px;
+    }
+    .mrow{
+      display:flex;
+      gap:8px;
+      animation:pop 0.3s ease;
+    }
+    .mrow.user{
+      justify-content:flex-end;
+    }
+    .mcol{
+      min-width:0;
+      max-width:84%;
     }
     .msg{
-      max-width:85%;
       padding:10px 14px;
       border-radius:16px;
       font-size:13px;
-      line-height:1.5;
+      line-height:1.55;
       word-wrap:break-word;
     }
     .msg.bot{
-      align-self:flex-start;
       background:var(--bg);
       border:1px solid var(--border);
-      border-bottom-left-radius:4px;
+      border-top-left-radius:4px;
     }
     .msg.user{
-      align-self:flex-end;
       background:var(--accent);
       color:#0a0a0b;
       border-bottom-right-radius:4px;
@@ -766,8 +930,33 @@
       color:var(--accent);
       text-decoration:underline;
     }
-    .msg.user a{
-      color:#0a0a0b;
+    .msg-actions{
+      display:flex;
+      gap:2px;
+      margin-top:4px;
+      opacity:0;
+      transition:0.25s;
+    }
+    .mrow:hover .msg-actions,
+    .msg-actions:focus-within{
+      opacity:1;
+    }
+    .msg-actions button{
+      border:none;
+      background:transparent;
+      color:var(--muted);
+      font-size:11px;
+      padding:3px 7px;
+      border-radius:6px;
+      cursor:pointer;
+      transition:0.2s;
+    }
+    .msg-actions button:hover{
+      background:var(--bg);
+      color:var(--text);
+    }
+    .msg-actions button.active{
+      color:var(--accent);
     }
     .typing-dots span{
       display:inline-block;
@@ -784,26 +973,132 @@
     .typing-dots span:nth-child(3){
       animation-delay:0.4s;
     }
+    .pills{
+      display:flex;
+      flex-wrap:wrap;
+      gap:5px;
+      justify-content:inherit;
+    }
+    .bot-profile-card .pills{
+      justify-content:center;
+    }
+    .pill{
+      font-family:'JetBrains Mono',monospace;
+      font-size:10px;
+      padding:3px 9px;
+      border-radius:100px;
+      border:1px solid var(--border);
+      background:var(--card);
+      color:var(--muted);
+    }
+    .pill[data-q]{
+      cursor:pointer;
+      transition:0.25s;
+    }
+    .pill[data-q]:hover{
+      border-color:var(--accent);
+      color:var(--accent);
+      transform:translateY(-2px);
+    }
+    .skill-row{
+      margin-top:8px;
+    }
+    .skill-row b{
+      display:block;
+      font-size:11px;
+      margin-bottom:4px;
+    }
+    .bot-card{
+      margin-top:8px;
+      padding:12px;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:14px;
+      transition:0.25s;
+    }
+    .bot-card:hover{
+      border-color:var(--accent);
+      transform:translateY(-2px);
+    }
+    .bot-card p{
+      font-size:12px;
+      color:var(--muted);
+      margin:4px 0 8px;
+    }
+    .bot-btns{
+      display:flex;
+      flex-wrap:wrap;
+      gap:6px;
+      margin-top:8px;
+    }
+    .bot-btns.col{
+      flex-direction:column;
+    }
+    .bot-btn,
+    .msg a.bot-btn{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:8px;
+      padding:8px 12px;
+      border:1px solid var(--border);
+      border-radius:10px;
+      background:var(--card);
+      color:var(--text);
+      font-family:inherit;
+      font-size:12px;
+      font-weight:600;
+      text-decoration:none;
+      cursor:pointer;
+      transition:0.25s;
+    }
+    .bot-btns:not(.col) .bot-btn{
+      display:inline-flex;
+    }
+    .bot-btn:hover,
+    .msg a.bot-btn:hover{
+      border-color:var(--accent);
+      color:var(--accent);
+      transform:translateX(3px);
+    }
+    .bot-btn.primary,
+    .msg a.bot-btn.primary{
+      background:var(--accent);
+      border-color:var(--accent);
+      color:#0a0a0b;
+    }
+    .bot-btn.primary:hover,
+    .msg a.bot-btn.primary:hover{
+      color:#0a0a0b;
+      transform:translateY(-2px);
+    }
     .chat-chips{
       display:flex;
       gap:6px;
-      flex-wrap:wrap;
+      overflow-x:auto;
       padding:0 16px 10px;
+      scrollbar-width:none;
+    }
+    .chat-chips::-webkit-scrollbar{
+      display:none;
     }
     .chip{
+      flex-shrink:0;
       font-family:'JetBrains Mono',monospace;
       font-size:11px;
-      padding:5px 10px;
+      padding:6px 12px;
       border-radius:100px;
       border:1px solid var(--border);
       background:transparent;
       color:var(--muted);
       cursor:pointer;
-      transition:0.3s;
+      transition:0.25s;
+      animation:pop 0.3s ease;
     }
     .chip:hover{
       border-color:var(--accent);
       color:var(--accent);
+      transform:translateY(-2px);
     }
     .chat-form{
       display:flex;
@@ -817,18 +1112,20 @@
       background:var(--bg);
       border:1px solid var(--border);
       border-radius:100px;
-      padding:10px 16px;
+      padding:11px 18px;
       color:var(--text);
       font-family:inherit;
       font-size:13px;
       outline:none;
+      transition:0.25s;
     }
     .chat-form input:focus{
       border-color:var(--accent);
+      box-shadow:0 0 0 3px rgba(198,255,94,0.12);
     }
     .chat-form button{
-      width:40px;
-      height:40px;
+      width:42px;
+      height:42px;
       flex-shrink:0;
       border:none;
       border-radius:50%;
@@ -837,6 +1134,10 @@
       cursor:pointer;
       font-size:16px;
       font-weight:800;
+      transition:0.25s;
+    }
+    .chat-form button:hover{
+      transform:scale(1.1) rotate(-12deg);
     }
 
     @media(max-width:800px){
@@ -864,9 +1165,16 @@
         right:16px;
         bottom:16px;
       }
-      .chat-box{
+      .chat-box,
+      .chat-box.expanded{
         right:16px;
-        bottom:84px;
+        bottom:88px;
+        width:calc(100vw - 32px);
+        height:calc(100vh - 110px);
+      }
+      .bot-teaser{
+        right:16px;
+        bottom:88px;
       }
     }
   </style>
@@ -1123,26 +1431,28 @@
   </div>
 
   <!-- CHATBOT -->
-  <button class="chat-toggle" id="chatToggle" aria-label="Chat with Denver's assistant">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 01-11.6 7.1L3 21l1.9-5.4A8 8 0 1121 12z"/></svg>
+  <div class="bot-teaser" id="botTeaser">
+    👋 Hi! I'm Denver's AI assistant. Ask me anything about his work!
+    <button id="teaserClose" aria-label="Dismiss">✕</button>
+  </div>
+  <button class="chat-toggle" id="chatToggle" aria-label="Chat with Denver's AI assistant" data-bot>
+    <span class="chat-badge" id="chatBadge">1</span>
   </button>
   <div class="chat-box" id="chatBox">
     <div class="chat-head">
-      <div class="chat-avatar">D</div>
-      <div>
-        <b>Denver's Assistant</b>
-        <small>● Ask me about Denver</small>
+      <div class="bot-ava big" data-bot><span class="status-dot"></span></div>
+      <div class="chat-id">
+        <b>Denver's AI Assistant <em class="bot-tag">BOT</em></b>
+        <small>● Online · replies instantly</small>
       </div>
-      <button class="chat-close" id="chatClose" aria-label="Close chat">✕</button>
+      <div class="chat-btns">
+        <button id="chatNew" title="New chat" aria-label="New chat">↺</button>
+        <button id="chatExpand" title="Expand" aria-label="Expand chat">⤢</button>
+        <button id="chatClose" title="Close" aria-label="Close chat">✕</button>
+      </div>
     </div>
     <div class="chat-messages" id="chatMessages"></div>
-    <div class="chat-chips" id="chatChips">
-      <button class="chip" data-q="Who is Denver?">Who is Denver?</button>
-      <button class="chip" data-q="What are his skills?">Skills</button>
-      <button class="chip" data-q="Show me his projects">Projects</button>
-      <button class="chip" data-q="Is he available for hire?">Availability</button>
-      <button class="chip" data-q="How can I contact him?">Contact</button>
-    </div>
+    <div class="chat-chips" id="chatChips"></div>
     <form class="chat-form" id="chatForm">
       <input type="text" id="chatInput" placeholder="Ask about Denver..." autocomplete="off">
       <button type="submit" aria-label="Send">➤</button>
@@ -1273,13 +1583,13 @@
       });
     }
     function projectCard(p){
-      let h = '<b>'+esc(p.title)+'</b><br>'+esc(p.desc);
-      if(p.tags.length) h += '<br>Tech: '+esc(p.tags.join(', '));
+      let h = '<div class="bot-card"><b>'+esc(p.title)+'</b><p>'+esc(p.desc)+'</p>';
+      if(p.tags.length) h += '<div class="pills">'+p.tags.map(t => '<span class="pill">'+esc(t)+'</span>').join('')+'</div>';
       const l = [];
-      if(p.live) l.push(lnk(p.live,'Live site'));
-      if(p.source) l.push(lnk(p.source,'Source code'));
-      if(l.length) h += '<br>'+l.join(' · ');
-      return h;
+      if(p.live) l.push('<a class="bot-btn primary" href="'+esc(p.live)+'" target="_blank" rel="noopener">Live site ↗</a>');
+      if(p.source) l.push('<a class="bot-btn" href="'+esc(p.source)+'" target="_blank" rel="noopener">Source code ↗</a>');
+      if(l.length) h += '<div class="bot-btns">'+l.join('')+'</div>';
+      return h + '</div>';
     }
     function getSkills(){
       return [...document.querySelectorAll('.skill-list li')].map(li=>{
@@ -1296,9 +1606,11 @@
       return [...document.querySelectorAll('.stat')].map(s => txt(s.querySelector('b'))+' '+txt(s.querySelector('span')).toLowerCase());
     }
     function contactList(){
-      const rows = [...document.querySelectorAll('.social')].map(a => '• '+lnk(a.href, txt(a.querySelector('b'))));
-      rows.push('• Phone: <a href="tel:+63'+FACTS.phone.slice(1)+'">'+FACTS.phoneNice+'</a>');
-      return rows.join('<br>');
+      const rows = [...document.querySelectorAll('.social')].map(a =>
+        '<a class="bot-btn" href="'+esc(a.href)+'" target="_blank" rel="noopener">'+esc(txt(a.querySelector('b')))+' <span>↗</span></a>'
+      );
+      rows.push('<a class="bot-btn" href="tel:+63'+FACTS.phone.slice(1)+'">Call '+FACTS.phoneNice+' <span>☎</span></a>');
+      return '<div class="bot-btns col">'+rows.join('')+'</div>';
     }
 
     const BOT = [
@@ -1310,15 +1622,15 @@
         a:(t,toks) => {
           const ps = getProjects();
           const match = ps.filter(p => toks.some(w => (p.desc+' '+p.tags.join(' ')).toLowerCase().includes(w)));
-          if(match.length && match.length < ps.length) return match.map(projectCard).join('<br><br>');
-          return "Denver's selected projects:<br>" + ps.map(p => '• <b>'+esc(p.title)+'</b> ('+esc(p.tags.join(', '))+')').join('<br>') + "<br>Ask me about any of them for details and links.";
+          if(match.length && match.length < ps.length) return match.map(projectCard).join('');
+          return "Denver's selected projects. Tap one to see details:<div class=\"bot-btns col\">" + ps.map(p => '<button class="bot-btn" data-q="Tell me about '+esc(p.title)+'">'+esc(p.title)+' <span>→</span></button>').join('') + "</div>";
         } },
       { re:[/skill/,/tech|stack|language|tool/,/frontend|backend|design|react|php|html|css|javascript|typescript|firebase|figma|webflow|draw|git|vercel|laravel|mysql|sql|know|use/],
         a:(t,toks) => {
           const sk = getSkills();
           const hits = [];
           sk.forEach(r => r.items.forEach(it => { if(toks.some(w => it.toLowerCase().includes(w))) hits.push(it+' ('+r.label+')'); }));
-          const list = sk.map(r => '• <b>'+esc(r.label)+':</b> '+esc(r.items.join(', '))).join('<br>');
+          const list = sk.map(r => '<div class="skill-row"><b>'+esc(r.label)+'</b><div class="pills">'+r.items.map(i => '<span class="pill">'+esc(i)+'</span>').join('')+'</div></div>').join('');
           let extra = '';
           if(!hits.length){
             const used = getProjects().filter(p => p.tags.some(tag => toks.some(w => tag.toLowerCase().includes(w))));
@@ -1333,10 +1645,10 @@
       { re:[/hire|hiring|available|availability|open to|remote|full.?time|work with|need a|rate|price|cost|quote/],
         a:() => {
           const p = aboutParts(); const resp = txt(document.querySelector('#contact .section-head p'));
-          return "Yes! Denver is <b>available for new projects</b>. " + esc(p[p.length-1] || '') + (resp ? " ("+esc(resp.toLowerCase())+")" : '') + "<br><br>Reach him here:<br>" + contactList();
+          return "Yes! Denver is <b>available for new projects</b>. " + esc(p[p.length-1] || '') + (resp ? " ("+esc(resp.toLowerCase())+")" : '') + "<br>Reach him here:" + contactList();
         } },
       { re:[/contact|reach|email|mail|message|chat|talk|social|linkedin|github|facebook|messenger|get in touch/],
-        a:() => "You can reach Denver here:<br>" + contactList() },
+        a:() => "You can reach Denver here:" + contactList() },
       { re:[/\bcv\b|resume|résumé|curriculum/],
         a:() => { const cv = [...document.querySelectorAll('.social')].find(a => /cv/i.test(txt(a))); return "You can open Denver's resume here: " + (cv ? lnk(cv.href,'View CV') : 'see the "View CV" button in the contact section') + "."; } },
       { re:[/where|location|based|\blive\b|country|city|cebu|inabanga|philippines|timezone/],
@@ -1351,18 +1663,23 @@
         a:() => "Thanks for stopping by! Feel free to reach out to Denver anytime. 👋" }
     ];
 
+    const IDS = ['greeting','phone','projects','skills','experience','education','hire','contact','cv','location','services','about','thanks','bye'];
+    let lastTopic = 'default';
+
     const FALLBACK = "I can only answer questions about Denver. Try asking about his <b>skills</b>, <b>projects</b>, <b>experience</b>, <b>education</b>, <b>availability</b>, or <b>contact</b> details.";
 
     function getReply(text){
       const t = text.toLowerCase();
       const toks = tokens(text);
       const projects = getProjects();
+      lastTopic = 'default';
 
       // 1) A specific project named in the question (matches the project title)
       const titleScores = projects.map(p => toks.filter(w => p.title.toLowerCase().includes(w)).length);
       const topTitle = Math.max(0, ...titleScores);
       if(topTitle > 0){
-        return projects.filter((p,i) => titleScores[i] === topTitle).map(projectCard).join('<br><br>');
+        lastTopic = 'project';
+        return projects.filter((p,i) => titleScores[i] === topTitle).map(projectCard).join('');
       }
 
       // 2) Topic questions (skills, contact, education, ...)
@@ -1372,11 +1689,11 @@
         item.re.forEach(r => { if(r.test(t)) score++; });
         if(score > bestScore){ best = item; bestScore = score; }
       });
-      if(best) return best.a(t, toks);
+      if(best){ lastTopic = IDS[BOT.indexOf(best)] || 'default'; return best.a(t, toks); }
 
       // 3) Projects whose description or tech tags match the question
       const projHits = projects.filter(p => toks.some(w => (p.desc+' '+p.tags.join(' ')).toLowerCase().includes(w)));
-      if(projHits.length) return projHits.map(projectCard).join('<br><br>');
+      if(projHits.length){ lastTopic = 'project'; return projHits.map(projectCard).join(''); }
 
       // 4) Search everything else written on the page (new sections, new text)
       const chunks = [...document.querySelectorAll('.hero p, .stat, .profile-role, section p, section li, .project')];
@@ -1393,26 +1710,119 @@
       return FALLBACK;
     }
 
+    // ----- Bot avatar (animated robot) -----
+    const BOT_SVG = `<svg class="bot-svg" viewBox="0 0 40 40" aria-hidden="true">
+      <line x1="20" y1="4" x2="20" y2="9" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      <circle class="bot-ant" cx="20" cy="3.5" r="2.4" fill="currentColor"/>
+      <rect x="2" y="17" width="4" height="9" rx="2" fill="currentColor"/>
+      <rect x="34" y="17" width="4" height="9" rx="2" fill="currentColor"/>
+      <rect x="6" y="9" width="28" height="24" rx="9" fill="currentColor"/>
+      <rect x="10" y="14" width="20" height="14" rx="6" fill="var(--accent)"/>
+      <g class="bot-eyes">
+        <circle class="bot-eye" cx="15.5" cy="21" r="2.4" fill="#0a0a0b"/>
+        <circle class="bot-eye" cx="24.5" cy="21" r="2.4" fill="#0a0a0b"/>
+      </g>
+    </svg>`;
+    document.querySelectorAll('[data-bot]').forEach(el => el.insertAdjacentHTML('afterbegin', BOT_SVG));
+
+    // The robot's eyes follow your cursor
+    let eyeBusy = false;
+    document.addEventListener('mousemove', (e)=>{
+      if(eyeBusy) return;
+      eyeBusy = true;
+      requestAnimationFrame(()=>{
+        eyeBusy = false;
+        document.querySelectorAll('.bot-eyes').forEach(g=>{
+          const r = g.ownerSVGElement.getBoundingClientRect();
+          if(!r.width) return;
+          const dx = Math.max(-1.6, Math.min(1.6, (e.clientX - (r.left + r.width/2)) / 90));
+          const dy = Math.max(-1.2, Math.min(1.2, (e.clientY - (r.top + r.height/2)) / 120));
+          g.style.transform = 'translate('+dx+'px,'+dy+'px)';
+        });
+      });
+    });
+
+    // ----- Chat UI -----
     const chatBox = document.getElementById('chatBox');
     const chatMessages = document.getElementById('chatMessages');
+    const chatChips = document.getElementById('chatChips');
     const chatInput = document.getElementById('chatInput');
+    const botTeaser = document.getElementById('botTeaser');
+    const chatBadge = document.getElementById('chatBadge');
     let chatStarted = false;
 
-    function addMsg(content, who, isHTML){
-      const div = document.createElement('div');
-      div.className = 'msg ' + who;
-      if(isHTML) div.innerHTML = content; else div.textContent = content;
-      chatMessages.appendChild(div);
+    const DEFAULT_CHIPS = ['Who is Denver?','What are his skills?','Show me his projects','Is he available for hire?','How can I contact him?'];
+    const FOLLOW = {
+      greeting:['Who is Denver?','What are his skills?','Show me his projects'],
+      about:['What are his skills?','Show me his projects','Is he available for hire?'],
+      skills:['Show me his projects','How much experience does he have?','How can I contact him?'],
+      projects:['What are his skills?','Is he available for hire?','How can I contact him?'],
+      project:['Show me his projects','What are his skills?','How can I contact him?'],
+      experience:['What is his education?','Show me his projects','Is he available for hire?'],
+      education:['What are his skills?','Show me his projects','How can I contact him?'],
+      hire:['Show me his projects','What is his phone number?','Show me his CV'],
+      contact:['Show me his projects','Is he available for hire?','Where is he based?'],
+      phone:['How can I contact him?','Is he available for hire?','Show me his projects'],
+      cv:['What are his skills?','Show me his projects','How can I contact him?'],
+      location:['Is he available for hire?','What are his skills?','How can I contact him?'],
+      services:['Show me his projects','What are his skills?','How can I contact him?'],
+      thanks:['Show me his projects','How can I contact him?'],
+      bye:DEFAULT_CHIPS
+    };
+
+    function setChips(list){
+      chatChips.innerHTML = list.map(q => '<button class="chip" data-q="'+esc(q)+'">'+esc(q)+'</button>').join('');
+    }
+
+    function actionsEl(msgEl){
+      const wrap = document.createElement('div');
+      wrap.className = 'msg-actions';
+      const copy = document.createElement('button');
+      copy.textContent = '⧉ Copy';
+      copy.addEventListener('click', ()=>{
+        const done = ()=>{ copy.textContent = '✓ Copied'; setTimeout(()=>{ copy.textContent = '⧉ Copy'; }, 1200); };
+        if(navigator.clipboard) navigator.clipboard.writeText(msgEl.innerText).then(done).catch(done); else done();
+      });
+      const up = document.createElement('button');
+      up.textContent = '👍';
+      const down = document.createElement('button');
+      down.textContent = '👎';
+      up.addEventListener('click', ()=>{ up.classList.toggle('active'); down.classList.remove('active'); });
+      down.addEventListener('click', ()=>{ down.classList.toggle('active'); up.classList.remove('active'); });
+      wrap.append(copy, up, down);
+      return wrap;
+    }
+
+    function addMsg(content, who, isHTML, plain){
+      const row = document.createElement('div');
+      row.className = 'mrow ' + who;
+      if(who === 'bot'){
+        const ava = document.createElement('div');
+        ava.className = 'bot-ava sm';
+        ava.innerHTML = BOT_SVG;
+        row.appendChild(ava);
+      }
+      const col = document.createElement('div');
+      col.className = 'mcol';
+      const m = document.createElement('div');
+      m.className = 'msg ' + who;
+      if(isHTML) m.innerHTML = content; else m.textContent = content;
+      col.appendChild(m);
+      if(who === 'bot' && !plain) col.appendChild(actionsEl(m));
+      row.appendChild(col);
+      chatMessages.appendChild(row);
       chatMessages.scrollTop = chatMessages.scrollHeight;
-      return div;
+      return row;
     }
 
     function botReply(text){
-      const typing = addMsg('<span class="typing-dots"><span></span><span></span><span></span></span>', 'bot', true);
+      const typing = addMsg('<span class="typing-dots"><span></span><span></span><span></span></span>', 'bot', true, true);
       setTimeout(()=>{
         typing.remove();
-        addMsg(getReply(text), 'bot', true);
-      }, 600);
+        const reply = getReply(text);
+        addMsg(reply, 'bot', true);
+        setChips(FOLLOW[lastTopic] || DEFAULT_CHIPS);
+      }, 700);
     }
 
     function sendMessage(text){
@@ -1422,28 +1832,64 @@
       botReply(text);
     }
 
+    function resetChat(){
+      chatMessages.innerHTML =
+        '<div class="bot-profile-card">' +
+          '<div class="bot-ava xl">'+BOT_SVG+'</div>' +
+          "<b>Denver's AI Assistant</b>" +
+          "<small>I know Denver's portfolio inside out.</small>" +
+          '<div class="pills">' +
+            '<span class="pill" data-q="What are his skills?">Skills</span>' +
+            '<span class="pill" data-q="Show me his projects">Projects</span>' +
+            '<span class="pill" data-q="How much experience does he have?">Experience</span>' +
+            '<span class="pill" data-q="How can I contact him?">Contact</span>' +
+          '</div>' +
+        '</div>';
+      addMsg("Hi! 👋 I'm Denver's AI assistant. Ask me anything about his skills, projects, experience, or how to contact him. You can type a question or tap a suggestion below.", 'bot', false, true);
+      setChips(DEFAULT_CHIPS);
+    }
+
     function toggleChat(open){
       const show = open === undefined ? !chatBox.classList.contains('open') : open;
       chatBox.classList.toggle('open', show);
       if(show){
-        if(!chatStarted){
-          chatStarted = true;
-          addMsg("Hi! 👋 I'm Denver's assistant. Ask me anything about his skills, projects, experience, or how to contact him.", 'bot', false);
-        }
+        botTeaser.classList.remove('show');
+        chatBadge.style.display = 'none';
+        if(!chatStarted){ chatStarted = true; resetChat(); }
         chatInput.focus();
       }
     }
 
     document.getElementById('chatToggle').addEventListener('click', ()=>toggleChat());
     document.getElementById('chatClose').addEventListener('click', ()=>toggleChat(false));
+    document.getElementById('chatNew').addEventListener('click', resetChat);
+    document.getElementById('chatExpand').addEventListener('click', (e)=>{
+      const big = chatBox.classList.toggle('expanded');
+      e.currentTarget.textContent = big ? '⤡' : '⤢';
+    });
     document.getElementById('chatForm').addEventListener('submit', (e)=>{
       e.preventDefault();
       sendMessage(chatInput.value);
       chatInput.value = '';
     });
-    document.querySelectorAll('.chip').forEach(c=>{
-      c.addEventListener('click', ()=>sendMessage(c.dataset.q));
+    // Any element with data-q (chips, pills, project buttons) sends that question
+    [chatMessages, chatChips].forEach(box => box.addEventListener('click', (e)=>{
+      const q = e.target.closest('[data-q]');
+      if(q) sendMessage(q.dataset.q);
+    }));
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape' && chatBox.classList.contains('open')) toggleChat(false);
     });
+
+    // Friendly pop-up that invites visitors to chat
+    botTeaser.addEventListener('click', ()=>toggleChat(true));
+    document.getElementById('teaserClose').addEventListener('click', (e)=>{
+      e.stopPropagation();
+      botTeaser.classList.remove('show');
+    });
+    setTimeout(()=>{
+      if(!chatBox.classList.contains('open')) botTeaser.classList.add('show');
+    }, 2500);
   </script>
 </body>
 </html>
